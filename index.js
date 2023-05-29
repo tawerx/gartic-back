@@ -20,6 +20,9 @@ import {
   setCanvasData,
   setGameWord,
 } from './sql.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 app.use(json());
 app.use(cors());
@@ -268,6 +271,6 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(process.env.PORT || 5000, () => {
+server.listen(process.env.PORT || 4000, () => {
   console.log('server started');
 });
