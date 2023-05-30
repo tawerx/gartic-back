@@ -96,7 +96,10 @@ export const deleteUser = async (socketId) => {
 
 const deleteRoom = async (roomId) => {
   try {
-    await pool.query(`DELETE FROM messages * WHERE roomid = $1`, [roomId]);
+    await pool.query(`DELETE FROM messages * WHERE roomid = $1 AND roomid != $2`, [
+      roomId,
+      'public',
+    ]);
     await pool.query(`DELETE FROM rooms * WHERE id = $1 AND id != $2`, [roomId, 'public']);
   } catch (error) {
     const msg = 'Ошибка в удалении комнаты';
